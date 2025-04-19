@@ -272,11 +272,22 @@
 
         // Modal functionality
         function openModal() {
-            document.getElementById('contactModal').style.display = 'flex';
+            const modal = document.getElementById('contactModal');
+            document.body.classList.add('modal-open');
+            modal.style.display = 'flex';
+            // Trigger reflow
+            modal.offsetHeight;
+            modal.classList.add('show');
         }
 
         function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
         }
 
         window.onclick = function(event) {
