@@ -157,22 +157,24 @@
         async function submitToNotion(formData) {
             console.log('Iniciando envío de formulario...', formData);
             try {
-                console.log('Enviando datos al webhook...');
+                const dataToSend = {
+                    nombre: formData.name,
+                    email: formData.email,
+                    telefono: formData.phone || '',
+                    industria: formData.industry,
+                    mensaje: formData.message || '',
+                    fecha: new Date().toISOString()
+                };
+
+                console.log('Enviando datos al webhook:', dataToSend);
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    mode: 'no-cors', // Agregamos esto para evitar problemas de CORS
-                    body: JSON.stringify({
-                        nombre: formData.name,
-                        email: formData.email,
-                        telefono: formData.phone || '',
-                        industria: formData.industry,
-                        mensaje: formData.message || '',
-                        fecha: new Date().toISOString()
-                    })
+                    credentials: 'omit',
+                    body: JSON.stringify(dataToSend)
                 });
 
                 console.log('Respuesta recibida:', response);
