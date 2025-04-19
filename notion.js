@@ -8,12 +8,14 @@ async function submitToNotion(formData) {
             headers: {
                 'Authorization': `Bearer ${NOTION_API_KEY}`,
                 'Content-Type': 'application/json',
-                'Notion-Version': '2022-06-28'
+                'Notion-Version': '2022-06-28',
+                'Access-Control-Allow-Origin': '*'
             },
+            mode: 'cors',
             body: JSON.stringify({
                 parent: { database_id: NOTION_DATABASE_ID },
                 properties: {
-                    Name: {
+                    'Nombre': {
                         title: [
                             {
                                 text: {
@@ -22,18 +24,24 @@ async function submitToNotion(formData) {
                             }
                         ]
                     },
-                    Email: {
+                    'Email': {
                         email: formData.email
                     },
-                    Phone: {
-                        phone_number: formData.phone || ''
+                    'Teléfono': {
+                        rich_text: [
+                            {
+                                text: {
+                                    content: formData.phone || ''
+                                }
+                            }
+                        ]
                     },
-                    Industry: {
+                    'Industria': {
                         select: {
                             name: formData.industry
                         }
                     },
-                    Message: {
+                    'Mensaje': {
                         rich_text: [
                             {
                                 text: {
@@ -42,7 +50,7 @@ async function submitToNotion(formData) {
                             }
                         ]
                     },
-                    Status: {
+                    'Estado': {
                         select: {
                             name: "Nuevo"
                         }
@@ -51,13 +59,17 @@ async function submitToNotion(formData) {
             })
         });
 
+        const data = await response.json();
+        
         if (!response.ok) {
-            throw new Error('Error submitting to Notion');
+            console.error('Notion API Error:', data);
+            throw new Error(`Error submitting to Notion: ${data.message || 'Unknown error'}`);
         }
 
+        console.log('Success:', data);
         return true;
     } catch (error) {
-        console.error('Error:', error);
-        return false;
+        console.error('Detailed Error:', error);
+        throw error;
     }
 } 

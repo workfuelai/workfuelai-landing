@@ -183,17 +183,13 @@
             const formData = Object.fromEntries(new FormData(form));
             
             try {
-                const success = await submitToNotion(formData);
-                if (success) {
-                    alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
-                    modal.style.display = 'none';
-                    form.reset();
-                } else {
-                    alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
-                }
+                await submitToNotion(formData);
+                alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
+                modal.style.display = 'none';
+                form.reset();
             } catch (error) {
-                alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
-                console.error('Error:', error);
+                console.error('Form submission error:', error);
+                alert(`Error al enviar el formulario: ${error.message}`);
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Enviar solicitud';
