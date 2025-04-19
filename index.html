@@ -163,7 +163,7 @@
                     telefono: formData.phone || '',
                     industria: formData.industry,
                     mensaje: formData.message || '',
-                    fecha: new Date().toLocaleString('es-PA', { timeZone: 'America/Panama' })
+                    fecha: new Date().toLocaleString('sv', { timeZone: 'America/Panama' }).replace(' ', 'T') + '-05:00'
                 };
 
                 console.log('Enviando datos al webhook:', dataToSend);
