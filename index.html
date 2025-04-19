@@ -150,6 +150,7 @@
         </div>
     </div>
 
+    <script src="notion.js"></script>
     <script>
         // Modal functionality
         const modal = document.getElementById('contactModal');
@@ -175,16 +176,28 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            const submitButton = form.querySelector('.submit-button');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+
+            const formData = Object.fromEntries(new FormData(form));
             
-            // Aquí puedes agregar la lógica para enviar los datos
-            console.log('Datos del formulario:', data);
-            
-            // Mostrar mensaje de éxito
-            alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
-            modal.style.display = 'none';
-            form.reset();
+            try {
+                const success = await submitToNotion(formData);
+                if (success) {
+                    alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
+                    modal.style.display = 'none';
+                    form.reset();
+                } else {
+                    alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
+                }
+            } catch (error) {
+                alert('Hubo un error al enviar el formulario. Por favor, intenta de nuevo.');
+                console.error('Error:', error);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Enviar solicitud';
+            }
         });
     </script>
 </body>
