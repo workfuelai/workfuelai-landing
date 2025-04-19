@@ -155,12 +155,16 @@
         const WEBHOOK_URL = 'https://primary-production-5324.up.railway.app/webhook-test/428a62dd-e39b-423b-999a-ee1fb2b0de35';
 
         async function submitToNotion(formData) {
+            console.log('Iniciando envío de formulario...', formData);
             try {
+                console.log('Enviando datos al webhook...');
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
+                    mode: 'no-cors', // Agregamos esto para evitar problemas de CORS
                     body: JSON.stringify({
                         nombre: formData.name,
                         email: formData.email,
@@ -171,13 +175,10 @@
                     })
                 });
 
-                if (!response.ok) {
-                    throw new Error('Error al enviar el formulario');
-                }
-
+                console.log('Respuesta recibida:', response);
                 return true;
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error detallado:', error);
                 throw error;
             }
         }
@@ -210,16 +211,19 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Enviando...';
 
+            console.log('Formulario enviado, recolectando datos...');
             const formData = Object.fromEntries(new FormData(form));
+            console.log('Datos recolectados:', formData);
             
             try {
                 await submitToNotion(formData);
+                console.log('Envío exitoso');
                 alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
                 modal.style.display = 'none';
                 form.reset();
             } catch (error) {
-                console.error('Form submission error:', error);
-                alert(`Error al enviar el formulario: ${error.message}`);
+                console.error('Error en el envío del formulario:', error);
+                alert('Hubo un problema al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Enviar solicitud';
