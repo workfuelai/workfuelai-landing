@@ -3,123 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workfuel AI - Tu Asistente de Ventas Inteligente 24/7</title>
+    <title>Workfuel AI - Revoluciona tus Ventas con IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
 </head>
 <body>
     <header class="header">
         <nav class="nav container">
             <div class="logo">Workfuel AI</div>
-            <button class="nav-cta">Contactar</button>
+            <div class="nav-links">
+                <a href="#beneficios">Beneficios</a>
+                <a href="#casos">Casos de Uso</a>
+                <a href="#demo">Demo</a>
+            </div>
+            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with Split Layout -->
         <section class="hero">
+            <div class="container split">
+                <div class="hero-content">
+                    <h1>Multiplica tus Ventas con un Asistente Virtual 24/7</h1>
+                    <p class="hero-subtitle">Convierte visitantes en clientes mientras duermes con nuestros agentes de IA</p>
+                    <div class="cta-group">
+                        <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
+                        <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                    </div>
+                    <div class="social-proof">
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-number">300%</span>
+                                <span class="stat-label">Más Leads</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Disponibilidad</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5min</span>
+                                <span class="stat-label">Configuración</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="chat-preview">
+                        <div class="chat-message received">
+                            ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte?
+                        </div>
+                        <div class="chat-message sent">
+                            Me interesa saber más sobre departamentos en venta
+                        </div>
+                        <div class="chat-message received">
+                            ¡Perfecto! Tengo varias opciones que podrían interesarte. ¿Tienes alguna preferencia de zona o presupuesto?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="beneficios" class="benefits">
             <div class="container">
-                <h1>Tu nuevo asistente de ventas está listo para trabajar 24/7</h1>
-                <p class="hero-subtitle">Agentes de IA entrenados para captar, filtrar y convertir leads automáticamente</p>
+                <h2>¿Por qué elegir Workfuel AI?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Calificación Automática</h3>
+                        <p>Identifica leads calificados al instante y prioriza tus esfuerzos de venta</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤖</div>
+                        <h3>IA Conversacional</h3>
+                        <p>Respuestas naturales y personalizadas que enganchan a tus clientes</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📅</div>
+                        <h3>Agenda Inteligente</h3>
+                        <p>Programa reuniones automáticamente sin conflictos de calendario</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>Analytics en Tiempo Real</h3>
+                        <p>Métricas detalladas de conversión y comportamiento de leads</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Video Section -->
+        <section id="demo" class="demo">
+            <div class="container">
+                <h2>Ve a Workfuel AI en Acción</h2>
+                <p class="section-subtitle">Mira cómo nuestro asistente virtual maneja conversaciones complejas</p>
                 <div class="video-container">
                     <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Service Description -->
-        <section class="service">
-            <div class="container">
-                <h2>¿Qué es un agente de IA?</h2>
-                <p class="service-description">Un asistente virtual impulsado por inteligencia artificial que trabaja 24/7 para tu negocio. Automatiza tareas, interactúa con clientes y gestiona leads de forma natural y eficiente.</p>
-            </div>
-        </section>
-
-        <!-- Benefits -->
-        <section class="benefits">
-            <div class="container">
-                <h2>Beneficios principales</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📅</div>
-                        <h3>Agenda reuniones automáticamente</h3>
-                        <p>Sincronización perfecta con tu calendario</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
-                        <h3>Filtra clientes reales</h3>
-                        <p>Califica leads según su potencial</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">💬</div>
-                        <h3>Responde como un humano</h3>
-                        <p>Conversaciones naturales y personalizadas</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🔄</div>
-                        <h3>Integración total</h3>
-                        <p>Conecta con Notion y Google Calendar</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Use Cases -->
-        <section class="use-cases">
+        <section id="casos" class="use-cases">
             <div class="container">
-                <h2>Casos de uso por industria</h2>
+                <h2>Soluciones por Industria</h2>
                 <div class="cases-grid">
                     <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Inmobiliaria">
                         <h3>Inmobiliarias</h3>
-                        <p>Filtrado de propiedades y agendamiento de visitas</p>
+                        <p>Califica leads y agenda visitas 24/7</p>
                     </div>
                     <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Restaurante">
                         <h3>Restaurantes</h3>
-                        <p>Reservas y atención al cliente 24/7</p>
+                        <p>Gestiona reservas y pedidos automáticamente</p>
                     </div>
                     <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Clínica">
                         <h3>Clínicas</h3>
-                        <p>Agendamiento de citas y seguimiento</p>
-                    </div>
-                    <div class="case-card">
-                        <h3>E-commerce</h3>
-                        <p>Soporte y recomendaciones personalizadas</p>
-                    </div>
-                    <div class="case-card">
-                        <h3>Seguros</h3>
-                        <p>Cotizaciones y evaluación de casos</p>
-                    </div>
-                    <div class="case-card">
-                        <h3>Coaches</h3>
-                        <p>Calificación de leads y agendamiento</p>
+                        <p>Programa citas y seguimiento de pacientes</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="cta">
+        <!-- Testimonials -->
+        <section class="testimonials">
             <div class="container">
-                <h2>Potencia tu negocio con IA</h2>
-                <p>Únete a cientos de empresas que ya confían en Workfuel AI</p>
-                <button class="cta-button">Quiero mi agente IA</button>
+                <h2>Lo que dicen nuestros clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Desde que implementamos Workfuel AI, nuestras conversiones aumentaron un 300%. El ROI fue inmediato."
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Juan Pérez">
+                            <div>
+                                <h4>Juan Pérez</h4>
+                                <p>CEO, Inmobiliaria XYZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "La capacidad de atender clientes 24/7 ha revolucionado nuestro negocio. ¡Es como tener un equipo de ventas que nunca duerme!"
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María González">
+                            <div>
+                                <h4>María González</h4>
+                                <p>Directora Comercial, Restaurantes ABC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
+                <p>Agenda una demo personalizada con nuestros expertos.</p>
+                <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
+                <p class="guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Soporte personalizado</p>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Workfuel AI. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
     <!-- Modal Form -->
     <div class="modal" id="contactModal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Solicita tu agente IA</h2>
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>¡Agenda tu Demo Personalizada!</h2>
+            <p class="modal-subtitle">Descubre cómo podemos ayudarte a multiplicar tus ventas</p>
             <form id="contactForm">
                 <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Tu nombre" required>
@@ -145,10 +205,35 @@
                 <div class="form-group">
                     <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" rows="3"></textarea>
                 </div>
-                <button type="submit" class="submit-button">Enviar solicitud</button>
+                <button type="submit" class="submit-button">¡Quiero Agendar mi Demo!</button>
+                <p class="form-guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Sin compromiso</p>
             </form>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Workfuel AI</h3>
+                    <p>Tu asistente virtual de ventas 24/7</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>info@workfuel.ai</p>
+                    <p>+507 6000-0000</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Workfuel AI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Webhook configuration
@@ -186,50 +271,66 @@
         }
 
         // Modal functionality
-        const modal = document.getElementById('contactModal');
-        const ctaButtons = document.querySelectorAll('.cta-button');
-        const closeButton = document.querySelector('.close-button');
-        const form = document.getElementById('contactForm');
+        function openModal() {
+            const modal = document.getElementById('contactModal');
+            document.body.classList.add('modal-open');
+            modal.style.display = 'flex';
+            // Trigger reflow
+            modal.offsetHeight;
+            modal.classList.add('show');
+        }
 
-        ctaButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                modal.style.display = 'flex';
-            });
-        });
-
-        closeButton.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            // Wait for animation to finish before hiding
+            setTimeout(() => {
                 modal.style.display = 'none';
-            }
-        });
+            }, 300);
+        }
 
-        form.addEventListener('submit', async (e) => {
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const submitButton = form.querySelector('.submit-button');
+            const submitButton = e.target.querySelector('.submit-button');
             submitButton.disabled = true;
             submitButton.textContent = 'Enviando...';
 
             console.log('Formulario enviado, recolectando datos...');
-            const formData = Object.fromEntries(new FormData(form));
+            const formData = Object.fromEntries(new FormData(e.target));
             console.log('Datos recolectados:', formData);
             
             try {
                 await submitToNotion(formData);
                 console.log('Envío exitoso');
                 alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
-                modal.style.display = 'none';
-                form.reset();
+                closeModal();
+                e.target.reset();
             } catch (error) {
                 console.error('Error en el envío del formulario:', error);
                 alert('Hubo un problema al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = 'Enviar solicitud';
+                submitButton.textContent = '¡Quiero Agendar mi Demo!';
             }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
