@@ -398,50 +398,40 @@ body.modal-open {
 
 .modal-content {
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
     max-width: 500px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.3s ease;
 }
 
-.modal.show .modal-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--secondary-color);
+.modal-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .modal-subtitle {
     text-align: center;
     color: var(--secondary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
-/* Form */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.5rem;
     border: 2px solid var(--light-gray);
     border-radius: var(--border-radius);
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: var(--transition);
 }
 
@@ -452,11 +442,17 @@ textarea:focus {
     border-color: var(--primary-color);
 }
 
+textarea {
+    height: 60px;
+    min-height: unset;
+    resize: none;
+}
+
 .form-guarantee {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     text-align: center;
     color: var(--secondary-color);
-    font-size: 0.875rem;
+    font-size: 0.8rem;
 }
 
 /* Footer */
