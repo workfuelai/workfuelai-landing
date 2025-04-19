@@ -355,6 +355,10 @@ body {
         font-size: 1.125rem;
     }
 
+    .hero {
+        padding: 120px 0 60px;
+    }
+
     .benefits-grid,
     .cases-grid {
         grid-template-columns: 1fr;
@@ -377,6 +381,10 @@ body {
         font-size: 2rem;
     }
 
+    .hero {
+        padding: 100px 0 40px;
+    }
+
     .nav {
         height: 60px;
     }
@@ -387,5 +395,10 @@ body {
 
     .nav-cta {
         padding: 0.5rem 1rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
     }
 } 
