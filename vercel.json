@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "*.html",
+            "src": "**/*",
             "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/",
-            "dest": "/index-v2.html"
+            "dest": "/index.html"
         },
         {
             "src": "/inmobiliarias",
@@ -18,6 +18,16 @@
         {
             "src": "/privacidad",
             "dest": "/privacy-policy.html"
+        },
+        {
+            "src": "/styles.css",
+            "headers": {
+                "cache-control": "public, max-age=0, must-revalidate"
+            }
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
         }
     ]
 } 
