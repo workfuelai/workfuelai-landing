@@ -557,44 +557,26 @@ textarea {
 
     .hero-subtitle {
         font-size: 1.1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero {
-        padding-top: 1rem;
-    }
-
-    .video-container {
-        padding-bottom: 56.25%;
-        margin: 1rem auto;
-    }
-
-    .cta-group {
-        flex-direction: column;
-        gap: 0.75rem;
-        margin: 1rem 0;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        margin-top: 1.5rem;
-    }
-
-    .container {
-        padding: 0 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 1.5rem;
     }
 
     .nav {
         flex-direction: column;
-        padding: 0.5rem 0.75rem;
-        gap: 0.5rem;
+        padding: 0.5rem;
+        gap: 0.25rem;
         position: relative;
+        margin-bottom: -0.5rem;
     }
 
     .logo {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         align-self: flex-start;
+        padding-left: 0;
     }
 
     .nav-links {
@@ -614,19 +596,45 @@ textarea {
         width: 100%;
         text-align: center;
         padding: 0.5rem 1rem;
+        margin-top: 0.25rem;
     }
 
     .mobile-menu-button {
         display: block;
         position: absolute;
-        right: 0.75rem;
+        right: 0.5rem;
         top: 0.5rem;
         background: none;
         border: none;
         font-size: 1.5rem;
         color: var(--text-color);
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0.25rem;
+    }
+
+    .header {
+        margin-bottom: -0.75rem;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .video-container {
+        padding-bottom: 56.25%;
+        margin: 0.75rem auto;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0.75rem 0;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 1rem;
     }
 
     .benefits,
@@ -643,10 +651,6 @@ textarea {
 
     .chat-message {
         margin: 0.75rem;
-    }
-
-    .header {
-        margin-bottom: -0.5rem;
     }
 }
 
