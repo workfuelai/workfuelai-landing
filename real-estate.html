@@ -11,8 +11,29 @@
     <style>
         .industry-hero {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 6rem 0;
+            padding: 3rem 0;
             text-align: center;
+        }
+
+        .industry-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .industry-hero .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .industry-features {
@@ -133,7 +154,17 @@
 
         @media (max-width: 768px) {
             .industry-hero {
-                padding: 4rem 0;
+                padding: 2rem 0;
+            }
+
+            .industry-hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .industry-hero .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
             }
 
             .cta-buttons {

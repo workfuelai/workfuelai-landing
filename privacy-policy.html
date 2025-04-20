@@ -12,13 +12,19 @@
         .privacy-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 4rem var(--container-padding);
+            padding: 3rem var(--container-padding);
         }
         
         .privacy-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .privacy-content h2 {
@@ -47,6 +53,17 @@
             font-style: italic;
             color: var(--secondary-color);
             margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-content {
+                padding: 2rem var(--container-padding);
+            }
+
+            .privacy-content h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
         }
     </style>
 </head>
