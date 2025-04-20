@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones - Workfuel AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <style>
+        .terms-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .terms-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .terms-container h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-color);
+        }
+
+        .terms-container p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .terms-container ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .terms-container li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 2rem 1rem;
+            }
+
+            .terms-container h1 {
+                font-size: 2rem;
+            }
+
+            .terms-container h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">Workfuel AI</a>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html#beneficios">Beneficios</a>
+                <a href="index.html#casos">Casos de Uso</a>
+                <a href="index.html#demo">Demo</a>
+            </div>
+            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="terms-container">
+            <h1>Términos y Condiciones</h1>
+            <p class="last-updated">Última actualización: 15 de marzo de 2024</p>
+
+            <h2>1. Introducción</h2>
+            <p>Bienvenido a Workfuel AI. Al acceder y utilizar nuestros servicios, aceptas estar sujeto a estos términos y condiciones. Por favor, léelos cuidadosamente antes de utilizar nuestros servicios.</p>
+
+            <h2>2. Definiciones</h2>
+            <ul>
+                <li>"Servicio" se refiere a la plataforma de Workfuel AI y todos sus componentes.</li>
+                <li>"Usuario" se refiere a cualquier persona o entidad que acceda o utilice el Servicio.</li>
+                <li>"Contenido" se refiere a toda la información, datos, texto, software, gráficos y materiales disponibles a través del Servicio.</li>
+            </ul>
+
+            <h2>3. Uso del Servicio</h2>
+            <p>Al utilizar nuestro Servicio, aceptas:</p>
+            <ul>
+                <li>Proporcionar información precisa y completa.</li>
+                <li>Mantener la confidencialidad de tu cuenta y contraseña.</li>
+                <li>No utilizar el Servicio para fines ilegales o no autorizados.</li>
+                <li>No interferir con la seguridad o el funcionamiento del Servicio.</li>
+            </ul>
+
+            <h2>4. Privacidad y Datos</h2>
+            <p>Tu privacidad es importante para nosotros. Nuestro uso de la información personal está regido por nuestra Política de Privacidad, que puedes encontrar en el enlace correspondiente en el pie de página.</p>
+
+            <h2>5. Propiedad Intelectual</h2>
+            <p>Todo el contenido, marcas, logos, software y tecnología utilizada en el Servicio son propiedad de Workfuel AI o de sus licenciantes y están protegidos por las leyes de propiedad intelectual.</p>
+
+            <h2>6. Limitación de Responsabilidad</h2>
+            <p>Workfuel AI no será responsable por daños indirectos, incidentales, especiales o consecuentes que resulten del uso o la imposibilidad de usar el Servicio.</p>
+
+            <h2>7. Modificaciones del Servicio</h2>
+            <p>Nos reservamos el derecho de modificar o descontinuar el Servicio en cualquier momento, con o sin previo aviso. No seremos responsables ante ti o cualquier tercero por cualquier modificación, suspensión o discontinuación del Servicio.</p>
+
+            <h2>8. Modificaciones de los Términos</h2>
+            <p>Podemos modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en el sitio web. Tu uso continuado del Servicio después de los cambios constituirá tu aceptación de los nuevos términos.</p>
+
+            <h2>9. Contacto</h2>
+            <p>Si tienes alguna pregunta sobre estos términos, por favor contáctanos en:</p>
+            <ul>
+                <li>Email: info@workfuel.ai</li>
+                <li>Teléfono: +507 6000-0000</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Workfuel AI</h3>
+                    <p>Tu asistente virtual de ventas 24/7</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>info@workfuel.ai</p>
+                    <p>+507 6000-0000</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Política de Privacidad</a>
+                    <a href="terms.html">Términos y Condiciones</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Workfuel AI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNavContainer = document.querySelector('.mobile-nav-container');
+            
+            if (!mobileNavContainer.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.menu-toggle');
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html> 
