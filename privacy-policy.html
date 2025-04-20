@@ -54,7 +54,17 @@
     <header class="header">
         <nav class="nav container">
             <a href="index.html" class="logo">Workfuel AI</a>
-            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="index.html#beneficios">Beneficios</a>
+                <a href="index.html#casos">Casos de Uso</a>
+            </div>
+            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
         </nav>
     </header>
 
@@ -142,20 +152,33 @@
     </footer>
     <script>
         // Mobile menu functionality
-        function toggleMobileMenu() {
+        function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         }
 
-        // Close mobile menu when clicking outside
+        // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            const nav = document.querySelector('.nav');
             const navLinks = document.querySelector('.nav-links');
-            const mobileButton = document.querySelector('.mobile-menu-button');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNavContainer = document.querySelector('.nav');
             
-            if (!nav.contains(event.target) && navLinks.classList.contains('show')) {
-                navLinks.classList.remove('show');
+            if (!mobileNavContainer.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.menu-toggle');
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
         });
     </script>
 </body>
