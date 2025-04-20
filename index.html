@@ -3,17 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workfuel AI - Revoluciona tus Ventas con IA</title>
+    <title>Workfuel AI - Revoluciona tus Ventas Inmobiliarias con IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=1.0.3">
+    <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <style>
+        .industry-hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .industry-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .industry-hero .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .industry-features {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .metrics-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            padding: 1.5rem;
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .use-cases {
+            padding: 6rem 0;
+        }
+
+        .use-case-list {
+            margin-top: 2rem;
+        }
+
+        .use-case-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .use-case-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-section {
+            background: var(--light-gray);
+            padding: 6rem 0;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .white-button {
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .white-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .industry-hero {
+                padding: 2rem 0;
+            }
+
+            .industry-hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .industry-hero .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
         <nav class="nav container">
-            <a href="#casos" class="logo">Workfuel AI</a>
-            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
+            <a href="index.html" class="logo">Workfuel AI</a>
             <button class="menu-toggle" onclick="toggleMenu()">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -24,123 +187,113 @@
                 <a href="#casos">Casos de Uso</a>
                 <a href="#demo">Demo</a>
             </div>
+            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
+        <section class="industry-hero">
             <div class="container">
-                <h1 class="gradient-text">Multiplica tus Ventas con un Asistente Virtual 24/7</h1>
-                <p class="hero-subtitle">Convierte visitantes en clientes mientras duermes con nuestros agentes de IA</p>
+                <h1>Revoluciona tus Ventas Inmobiliarias con IA</h1>
+                <p class="hero-subtitle">Convierte más leads en ventas con un asistente virtual especializado en el sector inmobiliario</p>
                 <div class="video-container">
-                    <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div class="cta-group">
                     <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
                     <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number">300</span><span class="stat-symbol">%</span>
-                        <span class="stat-label">Más Leads</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Disponibilidad</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">5</span><span class="stat-symbol">min</span>
-                        <span class="stat-label">Configuración</span>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section id="beneficios" class="benefits">
+        <section class="industry-features">
             <div class="container">
-                <h2>¿Por qué elegir Workfuel AI?</h2>
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
-                        <h3>Calificación Automática</h3>
-                        <p>Identifica leads calificados al instante y prioriza tus esfuerzos de venta</p>
+                <h2>Beneficios para tu Inmobiliaria</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏠</div>
+                        <h3>Calificación Automática de Leads</h3>
+                        <p>Identifica automáticamente los leads más prometedores basándose en presupuesto, zona de interés y urgencia de compra.</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🤖</div>
-                        <h3>IA Conversacional</h3>
-                        <p>Respuestas naturales y personalizadas que enganchan a tus clientes</p>
-                    </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📅</div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
                         <h3>Agenda Inteligente</h3>
-                        <p>Programa reuniones automáticamente sin conflictos de calendario</p>
+                        <p>Programa visitas y citas automáticamente, sincronizando con el calendario de tus agentes inmobiliarios.</p>
                     </div>
-                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="benefit-icon floating">📊</div>
-                        <h3>Analytics en Tiempo Real</h3>
-                        <p>Métricas detalladas de conversión y comportamiento de leads</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Respuestas 24/7</h3>
+                        <p>Atiende consultas sobre propiedades a cualquier hora, proporcionando información detallada y fotos instantáneamente.</p>
                     </div>
-                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="400">
-                        <div class="benefit-icon floating">🔄</div>
-                        <h3>Integración con tu CRM</h3>
-                        <p>Sincronización automática con los principales CRM del mercado</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Seguimiento Automático</h3>
+                        <p>Mantén el contacto con leads potenciales mediante seguimiento personalizado y nurturing automatizado.</p>
                     </div>
-                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="500">
-                        <div class="benefit-icon floating">⚡</div>
-                        <h3>Personalización por Industria</h3>
-                        <p>Asistente entrenado específicamente para tu sector y necesidades</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Demo Video Section -->
-        <section id="demo" class="demo">
-            <div class="container">
-                <h2>Ve a Workfuel AI en Acción</h2>
-                <p class="section-subtitle">Mira cómo nuestro asistente virtual maneja conversaciones complejas</p>
-                <div class="chat-preview">
-                    <div class="chat-message received">
-                        ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte?
-                    </div>
-                    <div class="chat-message sent">
-                        Me interesa saber más sobre departamentos en venta
-                    </div>
-                    <div class="chat-message received">
-                        ¡Perfecto! Tengo varias opciones que podrían interesarte. ¿Tienes alguna preferencia de zona o presupuesto?
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Use Cases -->
-        <section id="casos" class="use-cases">
-            <div class="container">
-                <h2>Soluciones para Inmobiliarias</h2>
-                <div class="cases-grid">
-                    <div class="case-card">
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Gestión de Leads">
-                        <h3>Gestión de Leads 24/7</h3>
-                        <p>Atiende consultas y califica leads automáticamente sin importar la hora</p>
-                    </div>
-                    <div class="case-card">
-                        <img src="https://images.unsplash.com/photo-1560518883-b2a85be0905f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Agendamiento">
-                        <h3>Agendamiento Inteligente</h3>
-                        <p>Programa visitas y reuniones automáticamente con tu calendario</p>
-                    </div>
-                    <div class="case-card">
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Integración CRM">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
                         <h3>Integración con CRM</h3>
-                        <p>Sincroniza automáticamente todos los leads con tu sistema de gestión</p>
+                        <p>Sincronización perfecta con los principales CRM inmobiliarios del mercado.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Multi-canal</h3>
+                        <p>Atiende leads desde WhatsApp, Facebook, Instagram y tu sitio web con una experiencia unificada.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="testimonials">
+        <section class="metrics-section">
+            <div class="container">
+                <h2>Resultados Comprobados</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-number">300%</div>
+                        <p>Más leads calificados</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">24/7</div>
+                        <p>Disponibilidad</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-number">5min</div>
+                        <p>Configuración</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <div class="container">
+                <h2>Casos de Uso</h2>
+                <div class="use-case-list">
+                    <div class="use-case-item">
+                        <div class="use-case-icon">🏢</div>
+                        <div>
+                            <h3>Gestión de Leads Inmobiliarios</h3>
+                            <p>Califica y prioriza leads automáticamente basándose en su perfil y necesidades específicas.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">📅</div>
+                        <div>
+                            <h3>Agendamiento de Visitas</h3>
+                            <p>Programa visitas a propiedades automáticamente, coordinando con los agentes disponibles.</p>
+                        </div>
+                    </div>
+                    <div class="use-case-item">
+                        <div class="use-case-icon">💬</div>
+                        <div>
+                            <h3>Atención al Cliente 24/7</h3>
+                            <p>Responde consultas sobre propiedades, precios y disponibilidad en cualquier momento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonial-section">
             <div class="container">
                 <h2>Lo que dicen nuestros clientes</h2>
                 <div class="testimonials-grid">
@@ -164,21 +317,22 @@
                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María González">
                             <div>
                                 <h4>María González</h4>
-                                <p>Directora Comercial, Restaurantes ABC</p>
+                                <p>Directora Comercial, Inmobiliaria ABC</p>
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section class="final-cta">
+        <section class="cta-section">
             <div class="container">
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
                 <p>Agenda una demo personalizada con nuestros expertos</p>
-                <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
-                <p class="guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Soporte personalizado</p>
+                <div class="cta-buttons">
+                    <button class="white-button" onclick="openModal()">Agenda tu Demo Gratis</button>
+                    <button class="white-button" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                </div>
             </div>
         </section>
     </main>
