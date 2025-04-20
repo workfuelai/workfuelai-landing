@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles-v2.css?v=1.0.1">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles-v2.css?v=1.0.2">
 </head>
 <body>
     <header class="header">
@@ -18,7 +19,7 @@
                 <a href="#casos">Casos de Uso</a>
                 <a href="#demo">Demo</a>
             </div>
-            <button class="nav-cta" onclick="openModal()">Prueba Gratis</button>
+            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
         </nav>
     </header>
 
@@ -27,67 +28,57 @@
         <section class="hero">
             <div class="container split">
                 <div class="hero-content">
-                    <h1>Multiplica tus Ventas con un Asistente Virtual 24/7</h1>
+                    <h1 class="gradient-text">Multiplica tus Ventas con un Asistente Virtual 24/7</h1>
                     <p class="hero-subtitle">Convierte visitantes en clientes mientras duermes con nuestros agentes de IA</p>
                     <div class="cta-group">
-                        <button class="primary-cta" onclick="openModal()">Empieza Ahora - ¡Gratis!</button>
-                        <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                        <button class="primary-cta pulse" onclick="openModal()">Agenda tu Demo Gratis</button>
+                        <button class="secondary-cta hover-float" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                     </div>
-                    <div class="social-proof">
-                        <div class="stats">
-                            <div class="stat">
-                                <span class="stat-number">300%</span>
-                                <span class="stat-label">Más Leads</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">24/7</span>
-                                <span class="stat-label">Disponibilidad</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">5min</span>
-                                <span class="stat-label">Configuración</span>
-                            </div>
+                    <div class="stats">
+                        <div class="stat hover-card">
+                            <span class="stat-number counter">300</span><span class="stat-symbol">%</span>
+                            <span class="stat-label">Más Leads</span>
+                        </div>
+                        <div class="stat hover-card">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Disponibilidad</span>
+                        </div>
+                        <div class="stat hover-card">
+                            <span class="stat-number counter">5</span><span class="stat-symbol">min</span>
+                            <span class="stat-label">Configuración</span>
                         </div>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="chat-preview">
-                        <div class="chat-message received">
-                            ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte?
-                        </div>
-                        <div class="chat-message sent">
-                            Me interesa saber más sobre departamentos en venta
-                        </div>
-                        <div class="chat-message received">
-                            ¡Perfecto! Tengo varias opciones que podrían interesarte. ¿Tienes alguna preferencia de zona o presupuesto?
-                        </div>
+                    <div class="video-container">
+                        <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Benefits Section -->
-        <section id="beneficios" class="benefits">
+        <section class="benefits">
             <div class="container">
-                <h2>¿Por qué elegir Workfuel AI?</h2>
+                <h2 class="section-title gradient-text">¿Por qué elegir Workfuel AI?</h2>
                 <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🎯</div>
+                    <div class="benefit-card hover-card" data-aos="fade-up">
+                        <div class="benefit-icon floating">🎯</div>
                         <h3>Calificación Automática</h3>
                         <p>Identifica leads calificados al instante y prioriza tus esfuerzos de venta</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">🤖</div>
+                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="benefit-icon floating">🤖</div>
                         <h3>IA Conversacional</h3>
                         <p>Respuestas naturales y personalizadas que enganchan a tus clientes</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📅</div>
+                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="benefit-icon floating">📅</div>
                         <h3>Agenda Inteligente</h3>
                         <p>Programa reuniones automáticamente sin conflictos de calendario</p>
                     </div>
-                    <div class="benefit-card">
-                        <div class="benefit-icon">📊</div>
+                    <div class="benefit-card hover-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="benefit-icon floating">📊</div>
                         <h3>Analytics en Tiempo Real</h3>
                         <p>Métricas detalladas de conversión y comportamiento de leads</p>
                     </div>
@@ -100,9 +91,6 @@
             <div class="container">
                 <h2>Ve a Workfuel AI en Acción</h2>
                 <p class="section-subtitle">Mira cómo nuestro asistente virtual maneja conversaciones complejas</p>
-                <div class="video-container">
-                    <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
             </div>
         </section>
 
@@ -167,9 +155,9 @@
         <section class="final-cta">
             <div class="container">
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
-                <p>Prueba Workfuel AI gratis durante 14 días. Sin compromiso.</p>
-                <button class="primary-cta" onclick="openModal()">Comenzar Prueba Gratuita</button>
-                <p class="guarantee">✓ Sin tarjeta de crédito requerida &nbsp;&nbsp; ✓ Configuración en 5 minutos &nbsp;&nbsp; ✓ Soporte personalizado</p>
+                <p>Agenda una demo personalizada con nuestros expertos.</p>
+                <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
+                <p class="guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Soporte personalizado</p>
             </div>
         </section>
     </main>
@@ -178,8 +166,8 @@
     <div class="modal" id="contactModal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>¡Comienza tu Prueba Gratuita!</h2>
-            <p class="modal-subtitle">Configura tu asistente virtual en minutos</p>
+            <h2>¡Agenda tu Demo Personalizada!</h2>
+            <p class="modal-subtitle">Descubre cómo podemos ayudarte a multiplicar tus ventas en una llamada con nuestros expertos</p>
             <form id="contactForm">
                 <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Tu nombre" required>
@@ -205,8 +193,8 @@
                 <div class="form-group">
                     <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" rows="3"></textarea>
                 </div>
-                <button type="submit" class="submit-button">¡Quiero mi Asistente Virtual!</button>
-                <p class="form-guarantee">✓ 14 días gratis &nbsp;&nbsp; ✓ Cancelación simple &nbsp;&nbsp; ✓ Sin compromiso</p>
+                <button type="submit" class="submit-button">¡Quiero Agendar mi Demo!</button>
+                <p class="form-guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Sin compromiso</p>
             </form>
         </div>
     </div>
@@ -235,7 +223,36 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Counter animation function
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current);
+            }, 30);
+        }
+
+        // Initialize counters
+        document.querySelectorAll('.counter').forEach(counter => {
+            const target = parseInt(counter.textContent);
+            counter.textContent = '0';
+            animateCounter(counter, target);
+        });
+
         // Webhook configuration
         const WEBHOOK_URL = 'https://primary-production-5324.up.railway.app/webhook/428a62dd-e39b-423b-999a-ee1fb2b0de35';
 
@@ -319,7 +336,7 @@
                 alert('Hubo un problema al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = '¡Quiero mi Asistente Virtual!';
+                submitButton.textContent = '¡Quiero Agendar mi Demo!';
             }
         });
 
