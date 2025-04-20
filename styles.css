@@ -27,7 +27,8 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--container-padding);
+    text-align: center;
 }
 
 /* Typography */
@@ -35,6 +36,9 @@ h1 {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -71,10 +75,14 @@ p {
     padding: 1rem var(--container-padding);
 }
 
+.logo, .logo:hover, .logo:visited {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
     padding-left: 0.5rem;
 }
 
@@ -139,27 +147,75 @@ p {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
-.split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.hero-content {
-    max-width: 600px;
-}
-
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--secondary-color);
     margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-group {
     display: flex;
     gap: 1rem;
-    margin-bottom: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 3rem auto 0;
+}
+
+.stat {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stat-number {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-symbol {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    display: block;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 40%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
 }
 
 /* Social Proof */
@@ -167,51 +223,39 @@ p {
     margin-top: 3rem;
 }
 
-.stats {
-    display: flex;
-    gap: 2rem;
-}
-
-.stat {
-    text-align: center;
-}
-
-.stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.stat-label {
-    color: var(--secondary-color);
-    font-size: 0.875rem;
-}
-
 /* Chat Preview */
 .chat-preview {
+    max-width: 400px;
+    margin: 3rem auto;
+    padding: 1.5rem;
     background: white;
-    padding: 2rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .chat-message {
-    padding: 1rem;
     margin-bottom: 1rem;
-    border-radius: var(--border-radius);
+    padding: 1rem;
+    border-radius: 1rem;
     max-width: 80%;
+    line-height: 1.4;
 }
 
 .chat-message.received {
-    background-color: var(--light-gray);
+    background: #f1f5f9;
     margin-right: auto;
+    border-bottom-left-radius: 0.5rem;
 }
 
 .chat-message.sent {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
     margin-left: auto;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.chat-message:last-child {
+    margin-bottom: 0;
 }
 
 /* Benefits Section */
@@ -247,30 +291,13 @@ p {
 /* Demo Section */
 .demo {
     padding: 6rem 0;
-    background-color: var(--light-gray);
+    background: var(--light-gray);
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--secondary-color);
     margin-bottom: 3rem;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: var(--border-radius);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 /* Use Cases */
@@ -290,6 +317,7 @@ p {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: var(--transition);
+    background: white;
 }
 
 .case-card:hover {
@@ -303,10 +331,21 @@ p {
     object-fit: cover;
 }
 
-.case-card h3,
-.case-card p {
+.case-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
     padding: 1rem;
+}
+
+.case-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+}
+
+.case-card p {
     margin: 0;
+    color: var(--secondary-color);
 }
 
 /* Testimonials */
@@ -515,24 +554,21 @@ textarea {
         font-size: 2.5rem;
     }
 
-    .split {
-        grid-template-columns: 1fr;
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 
-    .nav-links {
-        display: none;
-    }
-
-    .hero {
-        text-align: center;
+    .video-container {
+        padding-bottom: 56.25%;
     }
 
     .cta-group {
-        justify-content: center;
+        flex-direction: column;
     }
 
     .stats {
-        justify-content: center;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .container {
@@ -545,6 +581,15 @@ textarea {
 
     .logo {
         padding-left: 0.25rem;
+    }
+
+    .chat-preview {
+        margin: 2rem 1rem;
+    }
+    
+    .chat-message {
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
 }
 
