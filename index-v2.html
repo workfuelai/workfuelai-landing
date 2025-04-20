@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workfuel AI - Revoluciona tus Ventas con IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-v2.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Workfuel AI</div>
+            <div class="mobile-nav-container">
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <div class="nav-links">
+                    <a href="#beneficios">Beneficios</a>
+                    <a href="#casos">Casos de Uso</a>
+                    <a href="#demo">Demo</a>
+                </div>
+            </div>
+            <button class="nav-cta" onclick="openModal()">Prueba Gratis</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Split Layout -->
+        <section class="hero">
+            <div class="container split">
+                <div class="hero-content">
+                    <h1>Multiplica tus Ventas con un Asistente Virtual 24/7</h1>
+                    <p class="hero-subtitle">Convierte visitantes en clientes mientras duermes con nuestros agentes de IA</p>
+                    <div class="cta-group">
+                        <button class="primary-cta" onclick="openModal()">Empieza Ahora - ¡Gratis!</button>
+                        <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                    </div>
+                    <div class="social-proof">
+                        <div class="stats">
+                            <div class="stat">
+                                <span class="stat-number">300%</span>
+                                <span class="stat-label">Más Leads</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Disponibilidad</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">5min</span>
+                                <span class="stat-label">Configuración</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="chat-preview">
+                        <div class="chat-message received">
+                            ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte?
+                        </div>
+                        <div class="chat-message sent">
+                            Me interesa saber más sobre departamentos en venta
+                        </div>
+                        <div class="chat-message received">
+                            ¡Perfecto! Tengo varias opciones que podrían interesarte. ¿Tienes alguna preferencia de zona o presupuesto?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="beneficios" class="benefits">
+            <div class="container">
+                <h2>¿Por qué elegir Workfuel AI?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Calificación Automática</h3>
+                        <p>Identifica leads calificados al instante y prioriza tus esfuerzos de venta</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤖</div>
+                        <h3>IA Conversacional</h3>
+                        <p>Respuestas naturales y personalizadas que enganchan a tus clientes</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📅</div>
+                        <h3>Agenda Inteligente</h3>
+                        <p>Programa reuniones automáticamente sin conflictos de calendario</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>Analytics en Tiempo Real</h3>
+                        <p>Métricas detalladas de conversión y comportamiento de leads</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Video Section -->
+        <section id="demo" class="demo">
+            <div class="container">
+                <h2>Ve a Workfuel AI en Acción</h2>
+                <p class="section-subtitle">Mira cómo nuestro asistente virtual maneja conversaciones complejas</p>
+                <div class="video-container">
+                    <iframe src="https://www.loom.com/embed/41bb4b21490746b0910770cc1007d917?sid=05141bc0-ee91-4678-9bad-fdd899f90f49&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section id="casos" class="use-cases">
+            <div class="container">
+                <h2>Soluciones por Industria</h2>
+                <div class="cases-grid">
+                    <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Inmobiliaria">
+                        <h3>Inmobiliarias</h3>
+                        <p>Califica leads y agenda visitas 24/7</p>
+                    </div>
+                    <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Restaurante">
+                        <h3>Restaurantes</h3>
+                        <p>Gestiona reservas y pedidos automáticamente</p>
+                    </div>
+                    <div class="case-card">
+                        <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Clínica">
+                        <h3>Clínicas</h3>
+                        <p>Programa citas y seguimiento de pacientes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Desde que implementamos Workfuel AI, nuestras conversiones aumentaron un 300%. El ROI fue inmediato."
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Juan Pérez">
+                            <div>
+                                <h4>Juan Pérez</h4>
+                                <p>CEO, Inmobiliaria XYZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "La capacidad de atender clientes 24/7 ha revolucionado nuestro negocio. ¡Es como tener un equipo de ventas que nunca duerme!"
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María González">
+                            <div>
+                                <h4>María González</h4>
+                                <p>Directora Comercial, Restaurantes ABC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
+                <p>Prueba Workfuel AI gratis durante 14 días. Sin compromiso.</p>
+                <button class="primary-cta" onclick="openModal()">Comenzar Prueba Gratuita</button>
+                <p class="guarantee">✓ Sin tarjeta de crédito requerida &nbsp;&nbsp; ✓ Configuración en 5 minutos &nbsp;&nbsp; ✓ Soporte personalizado</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Form -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>¡Comienza tu Prueba Gratuita!</h2>
+            <p class="modal-subtitle">Configura tu asistente virtual en minutos</p>
+            <form id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Tu email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="Tu teléfono (opcional)">
+                </div>
+                <div class="form-group">
+                    <select id="industry" name="industry" required>
+                        <option value="">Selecciona tu industria</option>
+                        <option value="inmobiliaria">Inmobiliaria</option>
+                        <option value="restaurante">Restaurante</option>
+                        <option value="clinica">Clínica</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="seguros">Seguros</option>
+                        <option value="coaching">Coaching</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-button">¡Quiero mi Asistente Virtual!</button>
+                <p class="form-guarantee">✓ 14 días gratis &nbsp;&nbsp; ✓ Cancelación simple &nbsp;&nbsp; ✓ Sin compromiso</p>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Workfuel AI</h3>
+                    <p>Tu asistente virtual de ventas 24/7</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>info@workfuel.ai</p>
+                    <p>+507 6000-0000</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Términos y Condiciones</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Workfuel AI. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Webhook configuration
+        const WEBHOOK_URL = 'https://primary-production-5324.up.railway.app/webhook/428a62dd-e39b-423b-999a-ee1fb2b0de35';
+
+        async function submitToNotion(formData) {
+            console.log('Iniciando envío de formulario...', formData);
+            try {
+                const dataToSend = {
+                    nombre: formData.name,
+                    email: formData.email,
+                    telefono: formData.phone || '',
+                    industria: formData.industry,
+                    mensaje: formData.message || '',
+                    fecha: new Date().toLocaleString('sv', { timeZone: 'America/Panama' }).replace(' ', 'T') + '-05:00'
+                };
+
+                console.log('Enviando datos al webhook:', dataToSend);
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'omit',
+                    body: JSON.stringify(dataToSend)
+                });
+
+                console.log('Respuesta recibida:', response);
+                return true;
+            } catch (error) {
+                console.error('Error detallado:', error);
+                throw error;
+            }
+        }
+
+        // Modal functionality
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Mobile menu functionality
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNavContainer = document.querySelector('.mobile-nav-container');
+            
+            if (!mobileNavContainer.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.menu-toggle');
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitButton = e.target.querySelector('.submit-button');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Enviando...';
+
+            console.log('Formulario enviado, recolectando datos...');
+            const formData = Object.fromEntries(new FormData(e.target));
+            console.log('Datos recolectados:', formData);
+            
+            try {
+                await submitToNotion(formData);
+                console.log('Envío exitoso');
+                alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
+                closeModal();
+                e.target.reset();
+            } catch (error) {
+                console.error('Error en el envío del formulario:', error);
+                alert('Hubo un problema al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = '¡Quiero mi Asistente Virtual!';
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

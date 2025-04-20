@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/",
-            "dest": "/index.html"
+            "dest": "/index-v2.html"
         },
         {
             "src": "/inmobiliarias",
@@ -20,6 +20,12 @@
             "dest": "/privacy-policy.html"
         },
         {
+            "src": "/styles-v2.css",
+            "headers": {
+                "cache-control": "public, max-age=0, must-revalidate"
+            }
+        },
+        {
             "src": "/styles.css",
             "headers": {
                 "cache-control": "public, max-age=0, must-revalidate"
@@ -27,7 +33,10 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/$1"
+            "dest": "/$1",
+            "headers": {
+                "cache-control": "public, max-age=0, must-revalidate"
+            }
         }
     ]
 } 
