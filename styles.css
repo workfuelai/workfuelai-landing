@@ -72,18 +72,51 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem var(--container-padding);
-}
-
-.logo, .logo:hover, .logo:visited {
-    text-decoration: none;
-    color: var(--primary-color);
+    padding: 1rem 0;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    padding-left: 0.5rem;
+    color: var(--primary-color);
+}
+
+.mobile-nav-container {
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 .nav-links {
@@ -550,67 +583,61 @@ textarea {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-    }
-
-    .hero {
-        padding: 0.5rem 0 2rem;
-    }
-
-    .nav {
+    .menu-toggle {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        position: relative;
     }
 
-    .logo {
-        font-size: 1.3rem;
-        margin: 0;
+    .mobile-nav-container {
+        order: 1;
     }
 
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        background-color: var(--background-color);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        gap: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .logo {
+        order: 0;
     }
 
     .nav-cta {
-        padding: 0.5rem 1rem;
-        margin: 0;
-        width: auto;
+        order: 2;
     }
 
-    .mobile-menu-button {
-        display: none;
+    h1 {
+        font-size: 2.5rem;
     }
 
-    .container {
-        padding: 0 1rem;
+    .split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    .video-container {
-        padding-bottom: 56.25%;
-        margin: 1rem auto;
+    .hero {
+        padding: 2rem 0;
     }
 
     .cta-group {
         flex-direction: column;
-        gap: 0.75rem;
-        margin: 1rem 0;
     }
 
     .stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-top: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
     }
 
     .benefits,

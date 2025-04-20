@@ -7,19 +7,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <link rel="stylesheet" href="styles.css?v=1.0.2">
 </head>
 <body>
     <header class="header">
         <nav class="nav container">
-            <a href="index.html" class="logo">Workfuel AI</a>
-            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
-            <div class="nav-links">
-                <a href="#beneficios">Beneficios</a>
-                <a href="#casos">Casos de Uso</a>
-                <a href="#demo">Demo</a>
+            <div class="logo">Workfuel AI</div>
+            <div class="mobile-nav-container">
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <div class="nav-links">
+                    <a href="#beneficios">Beneficios</a>
+                    <a href="#casos">Casos de Uso</a>
+                    <a href="#demo">Demo</a>
+                </div>
             </div>
-            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
+            <button class="nav-cta" onclick="openModal()">Prueba Gratis</button>
         </nav>
     </header>
 
@@ -246,28 +252,44 @@
         // Webhook configuration
         const WEBHOOK_URL = 'https://primary-production-5324.up.railway.app/webhook/428a62dd-e39b-423b-999a-ee1fb2b0de35';
 
-        // Mobile menu functionality
-        function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
+        // Modal functionality
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const nav = document.querySelector('.nav');
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Mobile menu functionality
+        function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
-            const mobileButton = document.querySelector('.mobile-menu-button');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileNavContainer = document.querySelector('.mobile-nav-container');
             
-            if (!nav.contains(event.target) && navLinks.classList.contains('show')) {
-                navLinks.classList.remove('show');
+            if (!mobileNavContainer.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
 
-        // Close mobile menu when clicking on a link
+        // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 const navLinks = document.querySelector('.nav-links');
-                navLinks.classList.remove('show');
+                const menuToggle = document.querySelector('.menu-toggle');
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
             });
         });
 
@@ -299,33 +321,6 @@
             } catch (error) {
                 console.error('Error detallado:', error);
                 throw error;
-            }
-        }
-
-        // Modal functionality
-        function openModal() {
-            const modal = document.getElementById('contactModal');
-            document.body.classList.add('modal-open');
-            modal.style.display = 'flex';
-            // Trigger reflow
-            modal.offsetHeight;
-            modal.classList.add('show');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('show');
-            document.body.classList.remove('modal-open');
-            // Wait for animation to finish before hiding
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target === modal) {
-                closeModal();
             }
         }
 
