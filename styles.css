@@ -552,40 +552,37 @@ textarea {
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle {
         font-size: 1.1rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
     }
 
     .hero {
-        padding-top: 0.5rem;
-        padding-bottom: 1.5rem;
+        padding: 1.5rem 0 2rem;
     }
 
     .nav {
         flex-direction: column;
-        padding: 0.5rem;
-        gap: 0.25rem;
+        padding: 1rem;
+        gap: 1rem;
         position: relative;
-        margin-bottom: -0.5rem;
     }
 
     .logo {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         align-self: flex-start;
-        padding-left: 0;
     }
 
     .nav-links {
         display: none;
         width: 100%;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
         text-align: left;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
     }
 
     .nav-links.show {
@@ -595,46 +592,41 @@ textarea {
     .nav-cta {
         width: 100%;
         text-align: center;
-        padding: 0.5rem 1rem;
-        margin-top: 0.25rem;
+        padding: 0.75rem 1rem;
     }
 
     .mobile-menu-button {
         display: block;
         position: absolute;
-        right: 0.5rem;
-        top: 0.5rem;
+        right: 1rem;
+        top: 1rem;
         background: none;
         border: none;
         font-size: 1.5rem;
         color: var(--text-color);
         cursor: pointer;
-        padding: 0.25rem;
-    }
-
-    .header {
-        margin-bottom: -0.75rem;
+        padding: 0.5rem;
     }
 
     .container {
-        padding: 0 0.75rem;
+        padding: 0 1rem;
     }
 
     .video-container {
         padding-bottom: 56.25%;
-        margin: 0.75rem auto;
+        margin: 1.5rem auto;
     }
 
     .cta-group {
         flex-direction: column;
-        gap: 0.5rem;
-        margin: 0.75rem 0;
+        gap: 1rem;
+        margin: 1.5rem 0;
     }
 
     .stats {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
-        margin-top: 1rem;
+        gap: 1rem;
+        margin-top: 2rem;
     }
 
     .benefits,
@@ -642,7 +634,7 @@ textarea {
     .use-cases,
     .testimonials,
     .final-cta {
-        padding: 2rem 0;
+        padding: 3rem 0;
     }
 
     .chat-preview {
@@ -650,7 +642,7 @@ textarea {
     }
 
     .chat-message {
-        margin: 0.75rem;
+        margin: 1rem;
     }
 }
 
