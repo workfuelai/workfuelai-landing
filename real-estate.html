@@ -146,6 +146,7 @@
     <header class="header">
         <nav class="nav container">
             <a href="index.html" class="logo">Workfuel AI</a>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
             <div class="nav-links">
                 <a href="#beneficios">Beneficios</a>
                 <a href="#casos">Casos de Uso</a>
@@ -354,6 +355,31 @@
     </div>
 
     <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.querySelector('.nav-links');
+            const mobileButton = document.querySelector('.mobile-menu-button');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.classList.remove('show');
+            });
+        });
+
         // Modal functionality
         function openModal() {
             const modal = document.getElementById('contactModal');

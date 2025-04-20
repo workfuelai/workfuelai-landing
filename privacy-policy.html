@@ -54,6 +54,7 @@
     <header class="header">
         <nav class="nav container">
             <a href="index.html" class="logo">Workfuel AI</a>
+            <button class="mobile-menu-button" onclick="toggleMobileMenu()">☰</button>
         </nav>
     </header>
 
@@ -139,5 +140,23 @@
             </div>
         </div>
     </footer>
+    <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.querySelector('.nav-links');
+            const mobileButton = document.querySelector('.mobile-menu-button');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html> 
