@@ -181,11 +181,33 @@
             -webkit-user-select: none;
         }
 
-        /* Asegurarse de que los botones sean interactivos */
-        .nav-cta, .white-button, .primary-cta, .secondary-cta {
-            position: relative;
-            z-index: 100;
+        /* Simplificar los estilos de los botones */
+        .nav-cta {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            border: none;
+            font-weight: 600;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Eliminar cualquier estilo que pueda causar problemas */
+        .nav-cta, .white-button, .primary-cta, .secondary-cta {
+            position: static;
+            z-index: auto;
+        }
+
+        /* Asegurarse de que no haya superposiciones invisibles */
+        .nav {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
@@ -203,7 +225,7 @@
                 <a href="#use-cases">Casos de Uso</a>
                 <a href="#demo">Demo</a>
             </div>
-            <button class="nav-cta">Agenda tu Demo</button>
+            <a href="#" class="nav-cta">Agenda tu Demo</a>
         </nav>
     </header>
 
@@ -385,6 +407,14 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        // Eliminar cualquier evento residual del botón
+        document.addEventListener('DOMContentLoaded', function() {
+            const navCta = document.querySelector('.nav-cta');
+            navCta.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevenir cualquier comportamiento por defecto
             });
         });
     </script>
