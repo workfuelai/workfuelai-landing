@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=1.0.1">
+    <link rel="stylesheet" href="css/calendar.css">
     <style>
         .industry-hero {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -203,7 +204,7 @@
                     </div>
                 </div>
                 <div class="cta-group">
-                    <button class="primary-cta" onclick="openModal()">Agenda tu Demo Gratis</button>
+                    <button class="primary-cta" data-calendar-open>Agenda tu Demo Gratis</button>
                     <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
@@ -213,32 +214,32 @@
             <div class="container">
                 <h2>Beneficios para tu Inmobiliaria</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">🏠</div>
                         <h3>Calificación Automática de Leads</h3>
                         <p>Identifica automáticamente los leads más prometedores basándose en presupuesto, zona de interés y urgencia de compra.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">📅</div>
                         <h3>Agenda Inteligente</h3>
                         <p>Programa visitas y citas automáticamente, sincronizando con el calendario de tus agentes inmobiliarios.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">🤖</div>
                         <h3>Respuestas 24/7</h3>
                         <p>Atiende consultas sobre propiedades a cualquier hora, proporcionando información detallada y fotos instantáneamente.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">📊</div>
                         <h3>Seguimiento Automático</h3>
                         <p>Mantén el contacto con leads potenciales mediante seguimiento personalizado y nurturing automatizado.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">🔄</div>
                         <h3>Integración con CRM</h3>
                         <p>Sincronización perfecta con los principales CRM inmobiliarios del mercado.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card non-interactive">
                         <div class="feature-icon">📱</div>
                         <h3>Multi-canal</h3>
                         <p>Atiende leads desde WhatsApp, Facebook, Instagram y tu sitio web con una experiencia unificada.</p>
@@ -301,8 +302,8 @@
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
                 <p>Agenda una demo personalizada con nuestros expertos</p>
                 <div class="cta-buttons">
-                    <button class="white-button" onclick="openModal()">Agenda tu Demo Gratis</button>
-                    <button class="white-button" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                    <button class="white-button non-interactive" onclick="openModal()">Agenda tu Demo Gratis</button>
+                    <button class="white-button non-interactive" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
         </section>
@@ -481,5 +482,6 @@
             });
         });
     </script>
+    <script src="js/calendar.js"></script>
 </body>
 </html> 
