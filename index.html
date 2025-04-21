@@ -173,6 +173,20 @@
                 flex-direction: column;
             }
         }
+
+        /* Agregar estilos para evitar que el teclado se active en elementos no interactivos */
+        .feature-card, .metric-card, .use-case-item {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Asegurarse de que los botones sean interactivos */
+        button, a, input, select, textarea {
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            user-select: text;
+            -webkit-user-select: text;
+        }
     </style>
 </head>
 <body>
@@ -302,8 +316,8 @@
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
                 <p>Agenda una demo personalizada con nuestros expertos</p>
                 <div class="cta-buttons">
-                    <button class="white-button non-interactive" onclick="openModal()">Agenda tu Demo Gratis</button>
-                    <button class="white-button non-interactive" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
+                    <button class="white-button" onclick="openModal()">Agenda tu Demo Gratis</button>
+                    <button class="white-button" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
         </section>
