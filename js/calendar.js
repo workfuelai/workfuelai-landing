@@ -180,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Configuración de Google Calendar
 const config = {
     clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
-    apiKey: 'AIzaSyDGkFOZQXPPxHGVPtxKVxZGPGEBXGXxYJE',
     scope: 'https://www.googleapis.com/auth/calendar',
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
@@ -194,7 +193,6 @@ function initClient() {
     console.log('Iniciando cliente de Google Calendar...');
     
     gapi.client.init({
-        apiKey: config.apiKey,
         clientId: config.clientId,
         discoveryDocs: config.discoveryDocs,
         scope: config.scope
