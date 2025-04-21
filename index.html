@@ -221,7 +221,7 @@
             z-index: 1000;
         }
 
-        .calendar-modal-content {
+        .calendar-container {
             background-color: white;
             margin: 10% auto;
             padding: 20px;
@@ -229,6 +229,20 @@
             max-width: 500px;
             border-radius: 8px;
             position: relative;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         .calendar-form {
@@ -268,14 +282,6 @@
         .schedule-button:hover {
             background-color: var(--primary-dark);
         }
-
-        .close-button {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: 24px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -292,7 +298,7 @@
                 <a href="#use-cases">Casos de Uso</a>
                 <a href="#demo">Demo</a>
             </div>
-            <a href="#" class="nav-cta">Agenda tu Demo</a>
+            <button class="nav-cta" data-calendar-open>Agenda tu Demo</button>
         </nav>
     </header>
 
@@ -307,7 +313,7 @@
                     </div>
                 </div>
                 <div class="cta-group">
-                    <button class="primary-cta">Agenda tu Demo Gratis</button>
+                    <button class="primary-cta" data-calendar-open>Agenda tu Demo Gratis</button>
                     <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
@@ -405,7 +411,7 @@
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
                 <p>Agenda una demo personalizada con nuestros expertos</p>
                 <div class="cta-buttons">
-                    <button class="white-button">Agenda tu Demo Gratis</button>
+                    <button class="white-button" data-calendar-open>Agenda tu Demo Gratis</button>
                     <button class="white-button" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
@@ -489,48 +495,23 @@
 
     <!-- Modal del Calendario -->
     <div class="calendar-modal" id="calendarModal">
-        <div class="calendar-modal-content">
-            <span class="close-button" onclick="closeCalendarModal()">&times;</span>
-            <h2>Agenda tu Demo Personalizada</h2>
-            <div class="calendar-form">
-                <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Teléfono (opcional)</label>
-                    <input type="tel" id="phone">
-                </div>
-                <div class="form-group">
-                    <label for="date">Fecha preferida</label>
-                    <input type="date" id="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="time">Hora preferida</label>
-                    <select id="time" required>
-                        <option value="">Selecciona una hora</option>
-                        <option value="09:00">9:00 AM</option>
-                        <option value="10:00">10:00 AM</option>
-                        <option value="11:00">11:00 AM</option>
-                        <option value="14:00">2:00 PM</option>
-                        <option value="15:00">3:00 PM</option>
-                        <option value="16:00">4:00 PM</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensaje (opcional)</label>
-                    <textarea id="message" rows="3"></textarea>
-                </div>
-                <button onclick="scheduleDemo()" class="schedule-button">Agendar Demo</button>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h2>Agenda tu Demo</h2>
+                <button class="calendar-close" onclick="closeCalendarModal()">&times;</button>
             </div>
+            <div id="calendar"></div>
+            <div class="calendar-slots" id="timeSlots"></div>
+            <form class="calendar-form" id="appointmentForm">
+                <input type="text" placeholder="Nombre completo" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <textarea placeholder="Mensaje (opcional)"></textarea>
+                <button type="submit">Confirmar Cita</button>
+            </form>
         </div>
     </div>
 
-    <!-- Google Calendar API -->
+    <!-- Scripts -->
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="js/calendar.js"></script>
 </body>

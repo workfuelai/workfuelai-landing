@@ -179,8 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Configuración de Google Calendar
 const config = {
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    apiKey: process.env.GOOGLE_API_KEY,
+    clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/calendar',
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
@@ -188,7 +187,6 @@ const config = {
 // Inicializar el cliente de Google
 function initClient() {
     gapi.client.init({
-        apiKey: config.apiKey,
         clientId: config.clientId,
         discoveryDocs: config.discoveryDocs,
         scope: config.scope
@@ -197,6 +195,8 @@ function initClient() {
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
         // Manejar el estado inicial de inicio de sesión
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    }).catch(function(error) {
+        console.error('Error initializing Google Calendar:', error);
     });
 }
 
