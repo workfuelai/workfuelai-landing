@@ -1,6 +1,7 @@
 // Configuración de Google Calendar
 const config = {
     clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDGkFOZQXPPxHGVPtxKVxZGPGEBXGXxYJE',
     scope: 'https://www.googleapis.com/auth/calendar.events',
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
@@ -22,15 +23,62 @@ function initClient() {
     }
 
     gapi.client.init({
+        apiKey: config.apiKey,
         clientId: config.clientId,
         scope: config.scope,
         discoveryDocs: config.discoveryDocs
     }).then(() => {
         console.log('Cliente de Google Calendar inicializado correctamente');
-        setupEventListeners();
+        
+        // Verificar si el usuario está autenticado
+        if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+            console.log('Usuario no autenticado, configurando botón de inicio de sesión...');
+            setupSignInButton();
+        } else {
+            console.log('Usuario ya autenticado, configurando calendario...');
+            setupEventListeners();
+        }
+
+        // Escuchar cambios en el estado de autenticación
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
     }).catch((error) => {
         console.error('Error al inicializar Google Calendar:', error);
         showError('Error al inicializar el calendario: ' + (error.details || error.message || 'Error desconocido'));
+    });
+}
+
+// Actualizar la interfaz según el estado de autenticación
+function updateSigninStatus(isSignedIn) {
+    console.log('Estado de autenticación actualizado:', isSignedIn);
+    if (isSignedIn) {
+        setupEventListeners();
+    } else {
+        setupSignInButton();
+    }
+}
+
+// Configurar el botón de inicio de sesión
+function setupSignInButton() {
+    const timeSlotsContainer = document.getElementById('timeSlots');
+    if (timeSlotsContainer) {
+        timeSlotsContainer.innerHTML = `
+            <div style="text-align: center; padding: 20px;">
+                <p>Para agendar una demo, necesitas iniciar sesión con Google:</p>
+                <button onclick="handleAuthClick()" class="google-auth-button">
+                    Iniciar sesión con Google
+                </button>
+            </div>
+        `;
+    }
+}
+
+// Manejar clic en el botón de autenticación
+function handleAuthClick() {
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+        console.log('Usuario autenticado correctamente');
+    }).catch((error) => {
+        console.error('Error en la autenticación:', error);
+        showError('Error al autenticar: ' + (error.details || error.message || 'Error desconocido'));
     });
 }
 
@@ -75,7 +123,13 @@ function openCalendarModal() {
     
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    loadAvailableSlots();
+
+    // Verificar autenticación antes de cargar slots
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        loadAvailableSlots();
+    } else {
+        setupSignInButton();
+    }
 }
 
 // Cerrar el modal del calendario
