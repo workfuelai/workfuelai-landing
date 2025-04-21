@@ -498,10 +498,11 @@
         <div class="calendar-container">
             <div class="calendar-header">
                 <h2>Agenda tu Demo</h2>
-                <button class="calendar-close" onclick="closeCalendarModal()">&times;</button>
+                <button class="calendar-close">&times;</button>
             </div>
-            <div id="calendar"></div>
-            <div class="calendar-slots" id="timeSlots"></div>
+            <div class="calendar-slots" id="timeSlots">
+                <p>Cargando horarios disponibles...</p>
+            </div>
             <form class="calendar-form" id="appointmentForm">
                 <input type="text" placeholder="Nombre completo" required>
                 <input type="email" placeholder="Correo electrónico" required>

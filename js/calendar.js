@@ -184,6 +184,10 @@ const config = {
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
 
+// Variables globales
+let selectedDate = null;
+let selectedSlot = null;
+
 // Inicializar el cliente de Google
 function initClient() {
     gapi.client.init({
@@ -191,77 +195,163 @@ function initClient() {
         discoveryDocs: config.discoveryDocs,
         scope: config.scope
     }).then(function() {
-        // Escuchar eventos de cambio de estado de autenticación
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-        // Manejar el estado inicial de inicio de sesión
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        // Configurar los listeners de eventos después de inicializar
+        setupEventListeners();
     }).catch(function(error) {
         console.error('Error initializing Google Calendar:', error);
     });
 }
 
-// Actualizar la interfaz según el estado de inicio de sesión
-function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-        listUpcomingEvents();
+// Configurar event listeners
+function setupEventListeners() {
+    // Botones para abrir el calendario
+    document.querySelectorAll('[data-calendar-open]').forEach(button => {
+        button.addEventListener('click', openCalendarModal);
+    });
+
+    // Botón para cerrar el calendario
+    document.querySelector('.calendar-close').addEventListener('click', closeCalendarModal);
+
+    // Formulario de cita
+    document.getElementById('appointmentForm').addEventListener('submit', handleAppointmentSubmit);
+}
+
+// Abrir el modal del calendario
+function openCalendarModal() {
+    console.log('Abriendo modal del calendario');
+    const modal = document.getElementById('calendarModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    loadAvailableSlots(); // Cargar slots disponibles
+}
+
+// Cerrar el modal del calendario
+function closeCalendarModal() {
+    const modal = document.getElementById('calendarModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Cargar slots disponibles
+async function loadAvailableSlots() {
+    const today = new Date();
+    const slots = [];
+    
+    // Generar slots para los próximos 5 días laborables
+    for (let i = 0; i < 5; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        
+        // Solo días de semana
+        if (date.getDay() !== 0 && date.getDay() !== 6) {
+            // Horarios de 9 AM a 5 PM
+            for (let hour = 9; hour < 17; hour++) {
+                const slot = new Date(date);
+                slot.setHours(hour, 0, 0, 0);
+                slots.push({
+                    start: slot.toISOString(),
+                    end: new Date(slot.setHours(hour + 1)).toISOString()
+                });
+            }
+        }
     }
+
+    renderTimeSlots(slots);
 }
 
-// Listar eventos próximos
-function listUpcomingEvents() {
-    gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime'
-    }).then(function(response) {
-        const events = response.result.items;
-        if (events.length > 0) {
-            // Mostrar eventos
-            events.forEach(event => {
-                console.log(event.summary + ' (' + event.start.dateTime + ')');
-            });
-        }
+// Renderizar slots de tiempo disponibles
+function renderTimeSlots(slots) {
+    const container = document.getElementById('timeSlots');
+    container.innerHTML = slots.map(slot => {
+        const startTime = new Date(slot.start);
+        return `
+            <button class="time-slot" data-start="${slot.start}" data-end="${slot.end}">
+                ${formatTime(startTime)}
+            </button>
+        `;
+    }).join('');
+
+    // Agregar event listeners a los slots
+    container.querySelectorAll('.time-slot').forEach(button => {
+        button.addEventListener('click', handleSlotSelect);
     });
 }
 
-// Crear un nuevo evento
-function createCalendarEvent(eventDetails) {
-    const event = {
-        'summary': eventDetails.summary,
-        'description': eventDetails.description,
-        'start': {
-            'dateTime': eventDetails.startTime,
-            'timeZone': 'America/Panama'
-        },
-        'end': {
-            'dateTime': eventDetails.endTime,
-            'timeZone': 'America/Panama'
-        }
+// Manejar la selección de un slot
+function handleSlotSelect(event) {
+    // Remover selección previa
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.classList.remove('selected');
+    });
+
+    // Marcar el nuevo slot como seleccionado
+    event.target.classList.add('selected');
+    selectedSlot = {
+        start: event.target.dataset.start,
+        end: event.target.dataset.end
     };
-
-    return gapi.client.calendar.events.insert({
-        'calendarId': 'primary',
-        'resource': event
-    });
 }
 
 // Manejar el envío del formulario
-document.addEventListener('DOMContentLoaded', function() {
-    const calendarButtons = document.querySelectorAll('[data-calendar-open]');
-    
-    calendarButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Aquí implementaremos la apertura del modal del calendario
-            showCalendarModal();
-        });
-    });
-});
+async function handleAppointmentSubmit(event) {
+    event.preventDefault();
 
-// Mostrar el modal del calendario
-function showCalendarModal() {
-    // Implementaremos esta función cuando creemos el HTML del modal
-    console.log('Mostrar modal del calendario');
-} 
+    if (!selectedSlot) {
+        alert('Por favor selecciona un horario disponible');
+        return;
+    }
+
+    const form = event.target;
+    const formData = {
+        name: form.querySelector('input[type="text"]').value,
+        email: form.querySelector('input[type="email"]').value,
+        notes: form.querySelector('textarea').value,
+        startTime: selectedSlot.start,
+        endTime: selectedSlot.end
+    };
+
+    try {
+        const event = {
+            'summary': `Demo Workfuel AI con ${formData.name}`,
+            'description': formData.notes,
+            'start': {
+                'dateTime': formData.startTime,
+                'timeZone': 'America/Panama'
+            },
+            'end': {
+                'dateTime': formData.endTime,
+                'timeZone': 'America/Panama'
+            },
+            'attendees': [
+                {'email': formData.email}
+            ]
+        };
+
+        await gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': event,
+            'sendUpdates': 'all'
+        });
+
+        alert('¡Demo agendada con éxito! Recibirás un email con los detalles de la reunión.');
+        closeCalendarModal();
+    } catch (error) {
+        console.error('Error al agendar la cita:', error);
+        alert('Hubo un error al agendar la cita. Por favor intenta de nuevo.');
+    }
+}
+
+// Función auxiliar para formatear la hora
+function formatTime(date) {
+    return date.toLocaleTimeString('es-CO', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar la API de Google Calendar
+    gapi.load('client:auth2', initClient);
+}); 
