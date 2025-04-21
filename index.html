@@ -182,62 +182,10 @@
         }
 
         /* Asegurarse de que los botones sean interactivos */
-        button, a, input, select, textarea {
-            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-            user-select: text;
-            -webkit-user-select: text;
-        }
-
-        /* Asegurarse de que los botones de navegación sean interactivos */
-        .nav-cta, .menu-toggle {
-            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
-            user-select: text;
-            -webkit-user-select: text;
-            cursor: pointer;
+        .nav-cta, .white-button, .primary-cta, .secondary-cta {
             position: relative;
             z-index: 100;
-        }
-
-        /* Estilos mejorados para el modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: white;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            max-width: 500px;
-            width: 90%;
-            z-index: 2001;
-        }
-
-        .close-button {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            font-size: 24px;
             cursor: pointer;
-            z-index: 2002;
-        }
-
-        /* Clase para cuando el modal está abierto */
-        body.modal-open {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
         }
     </style>
 </head>
@@ -255,7 +203,7 @@
                 <a href="#use-cases">Casos de Uso</a>
                 <a href="#demo">Demo</a>
             </div>
-            <button class="nav-cta" onclick="openModal()">Agenda tu Demo</button>
+            <button class="nav-cta">Agenda tu Demo</button>
         </nav>
     </header>
 
@@ -270,7 +218,7 @@
                     </div>
                 </div>
                 <div class="cta-group">
-                    <button class="primary-cta" data-calendar-open>Agenda tu Demo Gratis</button>
+                    <button class="primary-cta">Agenda tu Demo Gratis</button>
                     <button class="secondary-cta" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
@@ -368,49 +316,12 @@
                 <h2>Empieza a Multiplicar tus Ventas Hoy</h2>
                 <p>Agenda una demo personalizada con nuestros expertos</p>
                 <div class="cta-buttons">
-                    <button class="white-button" onclick="openModal()">Agenda tu Demo Gratis</button>
+                    <button class="white-button">Agenda tu Demo Gratis</button>
                     <button class="white-button" onclick="document.querySelector('#demo').scrollIntoView({behavior: 'smooth'})">Ver Demo</button>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Modal Form -->
-    <div class="modal" id="contactModal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>¡Agenda tu Demo Personalizada!</h2>
-            <p class="modal-subtitle">Descubre cómo podemos ayudarte a multiplicar tus ventas en una llamada con nuestros expertos</p>
-            <form id="contactForm">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Tu email" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="phone" name="phone" placeholder="Tu teléfono (opcional)">
-                </div>
-                <div class="form-group">
-                    <select id="industry" name="industry" required>
-                        <option value="">Selecciona tu industria</option>
-                        <option value="inmobiliaria">Inmobiliaria</option>
-                        <option value="restaurante">Restaurante</option>
-                        <option value="clinica">Clínica</option>
-                        <option value="ecommerce">E-commerce</option>
-                        <option value="seguros">Seguros</option>
-                        <option value="coaching">Coaching</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" rows="3"></textarea>
-                </div>
-                <button type="submit" class="submit-button">¡Quiero Agendar mi Demo!</button>
-                <p class="form-guarantee">✓ Demo personalizada &nbsp;&nbsp; ✓ Consultoría gratuita &nbsp;&nbsp; ✓ Sin compromiso</p>
-            </form>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
@@ -437,48 +348,6 @@
     </footer>
 
     <script>
-        // Webhook configuration
-        const WEBHOOK_URL = 'https://primary-production-5324.up.railway.app/webhook/428a62dd-e39b-423b-999a-ee1fb2b0de35';
-
-        // Modal functionality
-        function openModal() {
-            const modal = document.getElementById('contactModal');
-            const body = document.body;
-            
-            // Guardar la posición actual del scroll
-            body.style.top = `-${window.scrollY}px`;
-            body.classList.add('modal-open');
-            
-            modal.style.display = 'flex';
-            modal.style.top = '0';
-            modal.style.left = '0';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('contactModal');
-            const body = document.body;
-            
-            // Restaurar la posición del scroll
-            const scrollY = body.style.top;
-            body.classList.remove('modal-open');
-            body.style.top = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            
-            modal.style.display = 'none';
-        }
-
-        // Cerrar modal cuando se hace clic fuera del contenido
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('contactModal');
-            const modalContent = document.querySelector('.modal-content');
-            
-            if (modal && modal.style.display === 'flex' && 
-                event.target === modal && 
-                !modalContent.contains(event.target)) {
-                closeModal();
-            }
-        });
-
         // Mobile menu functionality
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
@@ -507,63 +376,6 @@
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
             });
-        });
-
-        async function submitToNotion(formData) {
-            console.log('Iniciando envío de formulario...', formData);
-            try {
-                const dataToSend = {
-                    nombre: formData.name,
-                    email: formData.email,
-                    telefono: formData.phone || '',
-                    industria: formData.industry,
-                    mensaje: formData.message || '',
-                    fecha: new Date().toLocaleString('sv', { timeZone: 'America/Panama' }).replace(' ', 'T') + '-05:00'
-                };
-
-                console.log('Enviando datos al webhook:', dataToSend);
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    credentials: 'omit',
-                    body: JSON.stringify(dataToSend)
-                });
-
-                console.log('Respuesta recibida:', response);
-                return true;
-            } catch (error) {
-                console.error('Error detallado:', error);
-                throw error;
-            }
-        }
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitButton = e.target.querySelector('.submit-button');
-            submitButton.disabled = true;
-            submitButton.textContent = 'Enviando...';
-
-            console.log('Formulario enviado, recolectando datos...');
-            const formData = Object.fromEntries(new FormData(e.target));
-            console.log('Datos recolectados:', formData);
-            
-            try {
-                await submitToNotion(formData);
-                console.log('Envío exitoso');
-                alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
-                closeModal();
-                e.target.reset();
-            } catch (error) {
-                console.error('Error en el envío del formulario:', error);
-                alert('Hubo un problema al enviar el formulario. Por favor, intenta de nuevo o contáctanos directamente.');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = '¡Quiero Agendar mi Demo!';
-            }
         });
 
         // Smooth scroll for navigation links
