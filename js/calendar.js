@@ -1,182 +1,3 @@
-class CalendarUI {
-    constructor() {
-        this.selectedDate = null;
-        this.selectedSlot = null;
-        this.availableSlots = [];
-        this.init();
-    }
-
-    init() {
-        this.createCalendarModal();
-        this.setupEventListeners();
-    }
-
-    createCalendarModal() {
-        const modal = document.createElement('div');
-        modal.id = 'calendarModal';
-        modal.className = 'calendar-modal';
-        modal.innerHTML = `
-            <div class="calendar-modal-content">
-                <span class="close-calendar">&times;</span>
-                <h2>Agenda tu Demo</h2>
-                <div class="calendar-container">
-                    <div class="date-picker">
-                        <input type="date" id="datePicker" min="${this.getTodayString()}" />
-                    </div>
-                    <div class="time-slots" id="timeSlots">
-                        <p>Selecciona una fecha para ver los horarios disponibles</p>
-                    </div>
-                </div>
-                <div class="booking-form" style="display: none;">
-                    <h3>Confirma tu cita</h3>
-                    <form id="bookingForm">
-                        <div class="form-group">
-                            <input type="text" id="name" required placeholder="Tu nombre" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" required placeholder="Tu email" />
-                        </div>
-                        <div class="form-group">
-                            <textarea id="notes" placeholder="Notas adicionales (opcional)"></textarea>
-                        </div>
-                        <button type="submit" class="submit-booking">Confirmar Demo</button>
-                    </form>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-    }
-
-    setupEventListeners() {
-        // Botón para abrir el calendario
-        document.querySelectorAll('[data-calendar-open]').forEach(button => {
-            button.addEventListener('click', () => this.openCalendar());
-        });
-
-        // Cerrar modal
-        const closeBtn = document.querySelector('.close-calendar');
-        closeBtn.addEventListener('click', () => this.closeCalendar());
-
-        // Selector de fecha
-        const datePicker = document.getElementById('datePicker');
-        datePicker.addEventListener('change', (e) => this.handleDateChange(e.target.value));
-
-        // Formulario de reserva
-        const bookingForm = document.getElementById('bookingForm');
-        bookingForm.addEventListener('submit', (e) => this.handleBookingSubmit(e));
-    }
-
-    async handleDateChange(date) {
-        try {
-            const response = await fetch(`/api/available-slots?date=${date}`);
-            const data = await response.json();
-            this.availableSlots = data.availableSlots;
-            this.renderTimeSlots();
-        } catch (error) {
-            console.error('Error al obtener horarios:', error);
-        }
-    }
-
-    renderTimeSlots() {
-        const container = document.getElementById('timeSlots');
-        if (!this.availableSlots.length) {
-            container.innerHTML = '<p>No hay horarios disponibles para esta fecha</p>';
-            return;
-        }
-
-        container.innerHTML = this.availableSlots
-            .map(slot => {
-                const startTime = new Date(slot.start);
-                return `
-                    <button class="time-slot" data-start="${slot.start}" data-end="${slot.end}">
-                        ${this.formatTime(startTime)}
-                    </button>
-                `;
-            })
-            .join('');
-
-        // Agregar event listeners a los slots
-        container.querySelectorAll('.time-slot').forEach(button => {
-            button.addEventListener('click', (e) => this.handleSlotSelect(e));
-        });
-    }
-
-    handleSlotSelect(e) {
-        const button = e.target;
-        this.selectedSlot = {
-            start: button.dataset.start,
-            end: button.dataset.end
-        };
-        
-        // Mostrar formulario de reserva
-        document.querySelector('.booking-form').style.display = 'block';
-        
-        // Actualizar UI
-        document.querySelectorAll('.time-slot').forEach(slot => {
-            slot.classList.remove('selected');
-        });
-        button.classList.add('selected');
-    }
-
-    async handleBookingSubmit(e) {
-        e.preventDefault();
-        const formData = {
-            startTime: this.selectedSlot.start,
-            endTime: this.selectedSlot.end,
-            attendeeEmail: document.getElementById('email').value,
-            name: document.getElementById('name').value,
-            notes: document.getElementById('notes').value
-        };
-
-        try {
-            const response = await fetch('/api/schedule-meeting', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-            if (data.success) {
-                alert('¡Demo agendada con éxito! Recibirás un email con los detalles de la reunión.');
-                this.closeCalendar();
-            }
-        } catch (error) {
-            console.error('Error al agendar cita:', error);
-            alert('Hubo un error al agendar la cita. Por favor intenta de nuevo.');
-        }
-    }
-
-    openCalendar() {
-        document.getElementById('calendarModal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-
-    closeCalendar() {
-        document.getElementById('calendarModal').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    getTodayString() {
-        const today = new Date();
-        return today.toISOString().split('T')[0];
-    }
-
-    formatTime(date) {
-        return date.toLocaleTimeString('es-CO', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        });
-    }
-}
-
-// Inicializar el calendario
-document.addEventListener('DOMContentLoaded', () => {
-    new CalendarUI();
-});
-
 // Configuración de Google Calendar
 const config = {
     clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
@@ -200,41 +21,17 @@ function initClient() {
         return;
     }
 
-    // Verificar que gapi.client esté disponible
-    if (!window.gapi.client) {
-        const error = 'Error: Cliente de Google API no está disponible';
-        console.error(error);
-        showError(error);
-        return;
-    }
-
-    try {
-        gapi.client.init({
-            clientId: config.clientId,
-            scope: config.scope,
-            discoveryDocs: config.discoveryDocs
-        }).then(function() {
-            console.log('Cliente de Google Calendar inicializado correctamente');
-            
-            // Verificar que auth2 esté disponible
-            if (!gapi.auth2) {
-                const error = 'Error: Módulo de autenticación no está disponible';
-                console.error(error);
-                showError(error);
-                return;
-            }
-
-            // Configurar los listeners de eventos
-            setupEventListeners();
-            
-        }).catch(function(error) {
-            console.error('Error al inicializar Google Calendar:', error);
-            showError('Error al inicializar el calendario: ' + (error.message || 'Error desconocido'));
-        });
-    } catch (error) {
-        console.error('Error al inicializar el cliente:', error);
-        showError('Error al inicializar el cliente: ' + (error.message || 'Error desconocido'));
-    }
+    gapi.client.init({
+        clientId: config.clientId,
+        scope: config.scope,
+        discoveryDocs: config.discoveryDocs
+    }).then(() => {
+        console.log('Cliente de Google Calendar inicializado correctamente');
+        setupEventListeners();
+    }).catch((error) => {
+        console.error('Error al inicializar Google Calendar:', error);
+        showError('Error al inicializar el calendario: ' + (error.details || error.message || 'Error desconocido'));
+    });
 }
 
 // Función para mostrar errores en el modal
@@ -258,16 +55,12 @@ function setupEventListeners() {
     const closeButton = document.querySelector('.calendar-close');
     if (closeButton) {
         closeButton.addEventListener('click', closeCalendarModal);
-    } else {
-        console.error('No se encontró el botón de cerrar');
     }
 
     // Formulario de cita
     const appointmentForm = document.getElementById('appointmentForm');
     if (appointmentForm) {
         appointmentForm.addEventListener('submit', handleAppointmentSubmit);
-    } else {
-        console.error('No se encontró el formulario de cita');
     }
 }
 
@@ -282,35 +75,20 @@ function openCalendarModal() {
     
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
-    // Intentar autenticar y cargar slots
-    handleAuthentication();
-}
-
-// Manejar la autenticación
-async function handleAuthentication() {
-    try {
-        const auth2 = gapi.auth2.getAuthInstance();
-        if (!auth2.isSignedIn.get()) {
-            console.log('Usuario no autenticado, solicitando inicio de sesión...');
-            await auth2.signIn();
-        }
-        loadAvailableSlots();
-    } catch (error) {
-        console.error('Error en la autenticación:', error);
-        showError('Error en la autenticación: ' + (error.message || 'Error desconocido'));
-    }
+    loadAvailableSlots();
 }
 
 // Cerrar el modal del calendario
 function closeCalendarModal() {
     const modal = document.getElementById('calendarModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Cargar slots disponibles
-async function loadAvailableSlots() {
+function loadAvailableSlots() {
     const today = new Date();
     const slots = [];
     
@@ -339,6 +117,8 @@ async function loadAvailableSlots() {
 // Renderizar slots de tiempo disponibles
 function renderTimeSlots(slots) {
     const container = document.getElementById('timeSlots');
+    if (!container) return;
+
     container.innerHTML = slots.map(slot => {
         const startTime = new Date(slot.start);
         return `
@@ -382,9 +162,7 @@ async function handleAppointmentSubmit(event) {
     const formData = {
         name: form.querySelector('input[type="text"]').value,
         email: form.querySelector('input[type="email"]').value,
-        notes: form.querySelector('textarea').value,
-        startTime: selectedSlot.start,
-        endTime: selectedSlot.end
+        notes: form.querySelector('textarea').value
     };
 
     try {
@@ -392,11 +170,11 @@ async function handleAppointmentSubmit(event) {
             'summary': `Demo Workfuel AI con ${formData.name}`,
             'description': formData.notes,
             'start': {
-                'dateTime': formData.startTime,
+                'dateTime': selectedSlot.start,
                 'timeZone': 'America/Panama'
             },
             'end': {
-                'dateTime': formData.endTime,
+                'dateTime': selectedSlot.end,
                 'timeZone': 'America/Panama'
             },
             'attendees': [
@@ -430,10 +208,5 @@ function formatTime(date) {
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM cargado, cargando APIs de Google...');
-    
-    // Cargar las APIs necesarias de Google
-    gapi.load('client:auth2', function() {
-        console.log('APIs de Google cargadas, iniciando cliente...');
-        initClient();
-    });
+    gapi.load('client:auth2', initClient);
 }); 
