@@ -187,6 +187,26 @@
             user-select: text;
             -webkit-user-select: text;
         }
+
+        /* Asegurarse de que los botones de navegación sean interactivos */
+        .nav-cta, .menu-toggle {
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            user-select: text;
+            -webkit-user-select: text;
+            cursor: pointer;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Asegurarse de que el modal no bloquee el scroll */
+        .modal {
+            position: fixed;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -390,13 +410,19 @@
 
         // Modal functionality
         function openModal() {
-            document.getElementById('contactModal').style.display = 'flex';
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            // Asegurarse de que el modal sea interactivo
+            modal.classList.add('active');
         }
 
         function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            // Remover la clase active del modal
+            modal.classList.remove('active');
         }
 
         // Mobile menu functionality
