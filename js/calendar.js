@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Configuración de Google Calendar
 const config = {
     clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
-    scope: 'https://www.googleapis.com/auth/calendar',
+    scope: 'https://www.googleapis.com/auth/calendar.events',
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
 
@@ -192,26 +192,57 @@ let selectedSlot = null;
 function initClient() {
     console.log('Iniciando cliente de Google Calendar...');
     
-    gapi.client.init({
-        clientId: config.clientId,
-        discoveryDocs: config.discoveryDocs,
-        scope: config.scope
-    }).then(function() {
-        console.log('Cliente de Google Calendar inicializado correctamente');
-        // Configurar los listeners de eventos después de inicializar
-        setupEventListeners();
-        
-        // Verificar si el usuario está autenticado
-        if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
-            console.log('Usuario no autenticado, solicitando autorización...');
-            gapi.auth2.getAuthInstance().signIn();
-        }
-    }).catch(function(error) {
-        console.error('Error al inicializar Google Calendar:', error);
-        // Mostrar el error en el modal
-        const timeSlotsContainer = document.getElementById('timeSlots');
-        timeSlotsContainer.innerHTML = `<p style="color: red;">Error al cargar el calendario: ${error.message}</p>`;
-    });
+    // Verificar que gapi esté disponible
+    if (!window.gapi) {
+        const error = 'Error: API de Google no está disponible';
+        console.error(error);
+        showError(error);
+        return;
+    }
+
+    // Verificar que gapi.client esté disponible
+    if (!window.gapi.client) {
+        const error = 'Error: Cliente de Google API no está disponible';
+        console.error(error);
+        showError(error);
+        return;
+    }
+
+    try {
+        gapi.client.init({
+            clientId: config.clientId,
+            scope: config.scope,
+            discoveryDocs: config.discoveryDocs
+        }).then(function() {
+            console.log('Cliente de Google Calendar inicializado correctamente');
+            
+            // Verificar que auth2 esté disponible
+            if (!gapi.auth2) {
+                const error = 'Error: Módulo de autenticación no está disponible';
+                console.error(error);
+                showError(error);
+                return;
+            }
+
+            // Configurar los listeners de eventos
+            setupEventListeners();
+            
+        }).catch(function(error) {
+            console.error('Error al inicializar Google Calendar:', error);
+            showError('Error al inicializar el calendario: ' + (error.message || 'Error desconocido'));
+        });
+    } catch (error) {
+        console.error('Error al inicializar el cliente:', error);
+        showError('Error al inicializar el cliente: ' + (error.message || 'Error desconocido'));
+    }
+}
+
+// Función para mostrar errores en el modal
+function showError(message) {
+    const timeSlotsContainer = document.getElementById('timeSlots');
+    if (timeSlotsContainer) {
+        timeSlotsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
+    }
 }
 
 // Configurar event listeners
@@ -252,18 +283,22 @@ function openCalendarModal() {
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     
-    // Verificar autenticación antes de cargar slots
-    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    // Intentar autenticar y cargar slots
+    handleAuthentication();
+}
+
+// Manejar la autenticación
+async function handleAuthentication() {
+    try {
+        const auth2 = gapi.auth2.getAuthInstance();
+        if (!auth2.isSignedIn.get()) {
+            console.log('Usuario no autenticado, solicitando inicio de sesión...');
+            await auth2.signIn();
+        }
         loadAvailableSlots();
-    } else {
-        console.log('Usuario no autenticado, solicitando inicio de sesión...');
-        gapi.auth2.getAuthInstance().signIn().then(() => {
-            loadAvailableSlots();
-        }).catch(error => {
-            console.error('Error al autenticar:', error);
-            const timeSlotsContainer = document.getElementById('timeSlots');
-            timeSlotsContainer.innerHTML = '<p style="color: red;">Error al autenticar con Google Calendar</p>';
-        });
+    } catch (error) {
+        console.error('Error en la autenticación:', error);
+        showError('Error en la autenticación: ' + (error.message || 'Error desconocido'));
     }
 }
 
@@ -394,8 +429,9 @@ function formatTime(date) {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM cargado, iniciando configuración de Google Calendar...');
-    // Cargar la API de Google Calendar
+    console.log('DOM cargado, cargando APIs de Google...');
+    
+    // Cargar las APIs necesarias de Google
     gapi.load('client:auth2', function() {
         console.log('APIs de Google cargadas, iniciando cliente...');
         initClient();
