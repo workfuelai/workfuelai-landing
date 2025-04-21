@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Configuración de Google Calendar
 const config = {
     clientId: '685401652531-8fl9ff2v45th7l3mjh52ichsn62rg5ut.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDGkFOZQXPPxHGVPtxKVxZGPGEBXGXxYJE',
     scope: 'https://www.googleapis.com/auth/calendar',
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
 };
@@ -190,39 +191,82 @@ let selectedSlot = null;
 
 // Inicializar el cliente de Google
 function initClient() {
+    console.log('Iniciando cliente de Google Calendar...');
+    
     gapi.client.init({
+        apiKey: config.apiKey,
         clientId: config.clientId,
         discoveryDocs: config.discoveryDocs,
         scope: config.scope
     }).then(function() {
+        console.log('Cliente de Google Calendar inicializado correctamente');
         // Configurar los listeners de eventos después de inicializar
         setupEventListeners();
+        
+        // Verificar si el usuario está autenticado
+        if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
+            console.log('Usuario no autenticado, solicitando autorización...');
+            gapi.auth2.getAuthInstance().signIn();
+        }
     }).catch(function(error) {
-        console.error('Error initializing Google Calendar:', error);
+        console.error('Error al inicializar Google Calendar:', error);
+        // Mostrar el error en el modal
+        const timeSlotsContainer = document.getElementById('timeSlots');
+        timeSlotsContainer.innerHTML = `<p style="color: red;">Error al cargar el calendario: ${error.message}</p>`;
     });
 }
 
 // Configurar event listeners
 function setupEventListeners() {
+    console.log('Configurando event listeners...');
+    
     // Botones para abrir el calendario
     document.querySelectorAll('[data-calendar-open]').forEach(button => {
         button.addEventListener('click', openCalendarModal);
     });
 
     // Botón para cerrar el calendario
-    document.querySelector('.calendar-close').addEventListener('click', closeCalendarModal);
+    const closeButton = document.querySelector('.calendar-close');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeCalendarModal);
+    } else {
+        console.error('No se encontró el botón de cerrar');
+    }
 
     // Formulario de cita
-    document.getElementById('appointmentForm').addEventListener('submit', handleAppointmentSubmit);
+    const appointmentForm = document.getElementById('appointmentForm');
+    if (appointmentForm) {
+        appointmentForm.addEventListener('submit', handleAppointmentSubmit);
+    } else {
+        console.error('No se encontró el formulario de cita');
+    }
 }
 
 // Abrir el modal del calendario
 function openCalendarModal() {
     console.log('Abriendo modal del calendario');
     const modal = document.getElementById('calendarModal');
+    if (!modal) {
+        console.error('No se encontró el modal del calendario');
+        return;
+    }
+    
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    loadAvailableSlots(); // Cargar slots disponibles
+    
+    // Verificar autenticación antes de cargar slots
+    if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        loadAvailableSlots();
+    } else {
+        console.log('Usuario no autenticado, solicitando inicio de sesión...');
+        gapi.auth2.getAuthInstance().signIn().then(() => {
+            loadAvailableSlots();
+        }).catch(error => {
+            console.error('Error al autenticar:', error);
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            timeSlotsContainer.innerHTML = '<p style="color: red;">Error al autenticar con Google Calendar</p>';
+        });
+    }
 }
 
 // Cerrar el modal del calendario
@@ -352,6 +396,10 @@ function formatTime(date) {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM cargado, iniciando configuración de Google Calendar...');
     // Cargar la API de Google Calendar
-    gapi.load('client:auth2', initClient);
+    gapi.load('client:auth2', function() {
+        console.log('APIs de Google cargadas, iniciando cliente...');
+        initClient();
+    });
 }); 

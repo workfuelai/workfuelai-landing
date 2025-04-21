@@ -514,6 +514,17 @@
 
     <!-- Scripts -->
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        // Verificar que los scripts de Google se hayan cargado
+        window.onload = function() {
+            if (typeof gapi === 'undefined') {
+                console.error('Error: Google API no se ha cargado correctamente');
+                document.getElementById('timeSlots').innerHTML = 
+                    '<p style="color: red;">Error: No se pudo cargar el calendario. Por favor, recarga la página.</p>';
+            }
+        };
+    </script>
     <script src="js/calendar.js"></script>
 </body>
 </html> 
